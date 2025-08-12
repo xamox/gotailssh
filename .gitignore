@@ -1,0 +1,31 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Build directories
+bin/
+build/
+tmp/
+
+# Output of the go coverage tool
+coverage.out
+
+# Log files
+*.log
+
+# Ignore state directory
+state/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE directories and editor settings
+.vscode/
+.idea/
+
+# Test binaries
+*.test
