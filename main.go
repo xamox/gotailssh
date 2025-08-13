@@ -9,6 +9,7 @@ import (
 	"net"
 	"os"
 	"os/exec"
+	"runtime" // added for OS detection
 
 	"golang.org/x/crypto/ssh"
 	"tailscale.com/tsnet"
@@ -102,7 +103,14 @@ func main() {
 								continue
 							}
 							req.Reply(true, nil)
-							cmd := exec.Command("/bin/sh")
+							// Use OS-specific shell
+							var shellCmd string
+							if runtime.GOOS == "windows" {
+								shellCmd = "cmd.exe"
+							} else {
+								shellCmd = "/bin/sh"
+							}
+							cmd := exec.Command(shellCmd)
 							if ptyRequested {
 								ptmx, err := pty.Start(cmd)
 								if err != nil {
